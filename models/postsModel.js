@@ -5,8 +5,8 @@ const postsSchema = new mongoose.Schema({
     location: { type: String, required: true },
     likes: { type: Number, default: 0 },
     description: { type: String, required: true },
-    PostImage: { type: URL },
-    date: { type: Date, default: new Date().getTime() }
+    PostImage: { type: String, required: true },
+    date: { type: Date, default: Date() }
 })
 
 const postsModel = mongoose.model('instaPosts', postsSchema)

@@ -1,10 +1,17 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
 const app = require('./app')
+const cloudinary = require('cloudinary').v2
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
+});
 
 // ENV VARIABLES
 const port = process.env.PORT || 3000
-const db_URL = process.env.DATABASE_URL || 'mongodb+srv://PrashantShaw:dimpu1234@cluster0.23bgi7j.mongodb.net/instaclonePosts'
+const db_URL = process.env.DATABASE_URL
 
 // CONNECTING TO CLOUDINARY
 
