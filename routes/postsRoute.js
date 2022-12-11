@@ -8,7 +8,12 @@ const router = express.Router()
 
 router.get('/posts', async (req, res) => {
     try {
-        const posts = await postsModel.find()
+        const pageNo = req.query.page
+        const pagesToSkip = 5 * (pageNo - 1)
+        const posts = await postsModel
+            .find().sort({ date: -1 })
+            .skip(pagesToSkip).limit(5)
+            
         res.status(200).json(posts)
     }
     catch (e) {
@@ -42,7 +47,7 @@ router.post('/posts', async (req, res) => {
             likes: 0,
             description,
             PostImage: imageUrl,
-            date : Date.now()
+            date: Date.now()
         })
         console.log(createdPost)
         res.status(200).json(createdPost)
